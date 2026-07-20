@@ -10,4 +10,5 @@ if app_mode == 'Home':
 elif app_mode == 'Ejercicio 1':
 elif app_mode == 'Ejercicio 2':
 elif app_mode == 'Ejercicio 3':
-elif app_mode == 'Ejercicio 4'
+elif app_mode == 'Ejercicio 4':
+  
