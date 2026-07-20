@@ -8,10 +8,11 @@ app_mode = st.sidebar.selectbox('_Secciones_',['Home','Ejercicio 1','Ejercicio 2
 
 if app_mode == 'Home':
   st.title ('Proyecto N°1 de la Especialización de Python Ed. 60')
-  st.image('Python_logo.png')
+  
   st.subheader("_Streamlit_ is :red[cool] :sunglasses:")
   
   st.write("Elaborado por: Erick Cárdenas")
+  
   st.markdown(
     '''
     Estudiante: Erick Eduardo Cárdenas Velarde.
@@ -25,6 +26,7 @@ if app_mode == 'Home':
     Descripción: Proyecto enfocado en el desarrollo de una Aplicación con Streamlit.
     '''
     )
+  st.image('Python_logo.png')
 elif app_mode == 'Ejercicio 1':
   st.write("Bienvenido a la " + app_mode)
 elif app_mode == 'Ejercicio 2':
