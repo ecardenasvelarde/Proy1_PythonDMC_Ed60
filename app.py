@@ -10,6 +10,7 @@ if app_mode == 'Home':
   st.title ('Proyecto N°1 de la Especialización de Python')
   st.subheader("_Streamlit_ is :blue[cool] :sunglasses:")
   st.image('Python_logo.png')
+  st.write("Elaborado por: Erick Cardenas")
   st.markdown(
     '''
     Estudiante: Miguel Angel Limaquispe Huaman
