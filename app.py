@@ -108,7 +108,51 @@ elif app_mode == 'Ejercicio 1':
   else:
       st.info("Aún no hay movimientos registrados.")
 elif app_mode == 'Ejercicio 2':
-  st.write("Bienvenido a la " + app_mode)
+  # --- Configuración de la página ---
+    st.set_page_config(page_title="Ejercicio 2 - Formulario")
+    st.markdown("""
+    ## Formulario
+    Este módulo registrar la venta de accesorios o dispositivos de entrada/salida usando arreglos de NumPy.
+    """)
+    st.divider()
+  
+    if "registros" not in st.session_state:
+        st.session_state.registros = []
+    st.title("Registro con NumPy, arrays y DataFrame")
+    producto =  st.text_input('Producto', placeholder="Ej: Ingrese producto")
+    categoria = st.selectbox('Categoría',['Computadoras','Entrada','Salida','Almacenamiento'])
+    precio_unitario = st.number_input('Precio Unitario', min_value=0.0, step=1.0)
+    cantidad = st.number_input("Cantidad", min_value=0, step=1)
+    total = cantidad*precio_unitario
+    # Botón para agregar
+    if st.button('agregar registro'):
+        if producto.strip()=="":
+          st.error('ingresar un producto')
+        elif precio_unitario <0:
+          st.error ('el precio debe ser mayor a cero')
+        elif cantidad <0:
+          st.error ('la cantidad debe ser mayor a cero')
+        else: 
+          registro = {
+          'producto': producto,
+          'categoria' : categoria,
+          'precio unitario' : precio_unitario,
+          'cantidad' : cantidad,
+          'total': total
+        }
+        st.session_state.registros.append(registro)
+        st.success("Agregado")
+      
+    if st.session_state.registros:
+       df = pd.DataFrame(st.session_state.registros)
+       st.dataframe(df,use_container_width=True, hide_index=True)
+       
+       # Botón para reiniciar
+       if st.button("Limpiar todo"):
+           st.session_state.registros = []
+           st.rerun()
+    else:
+        st.info("Aún no hay registros.")
 elif app_mode == 'Ejercicio 3':
   st.write("Bienvenido a la " + app_mode)
 elif app_mode == 'Ejercicio 4':
