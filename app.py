@@ -208,37 +208,32 @@ elif app_mode == 'Ejercicio 4':
   # --- Configuración de la página ---
   st.set_page_config(page_title="Ejercicio 4 - CRUD")
   if 'servidores' not in st.session_state:
-      st.session_state.servidores = []
-  
-  st.title("Gestión de Servidores (CRUD)")
-  
+    st.session_state.servidores = []
+  # --- Título ---
+  st.subheader("Gestión de Servidores (CRUD)")
   # Usamos Tabs para organizar el CRUD
   tab_crear, tab_leer, tab_actualizar, tab_eliminar = st.tabs(["Crear", "Leer", "Actualizar", "Eliminar"])
-  
   # ---------------------------------------------------------
   # C - CREATE (Crear)
   # ---------------------------------------------------------
   with tab_crear:
-      st.subheader("Registrar Nuevo Servidor")
-      with st.form("form_registro"):
-          nombre = st.text_input("Nombre del Servidor")
-          t_total = st.number_input("Tiempo Total (h)", min_value=1.0, value=24.0)
-          t_caida = st.number_input("Tiempo Caída (h)", min_value=0.0, value=0.0)
-          a_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=100.0)
-          a_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=10.0)
-          
-          btn_crear = st.form_submit_button("Guardar Servidor")
-          
-          if btn_crear:
-              try:
-                  # Instanciamos la clase de la librería
-                  nuevo_srv = srv.Servidor(nombre, t_total, t_caida, a_total, a_usado)
-                  # Guardamos el resumen (diccionario) en la lista
-                  st.session_state.servidores.append(nuevo_srv.resumen())
-                  st.success(f"Servidor {nombre} registrado!")
-              except ValueError as e:
-                  st.error(f"Error: {e}")
-  
+    st.subheader("Registrar Nuevo Servidor")
+    with st.form("form_registro"):
+      nombre = st.text_input("Nombre del Servidor")
+      t_total = st.number_input("Tiempo Total (h)", min_value=1.0, value=24.0)
+      t_caida = st.number_input("Tiempo Caída (h)", min_value=0.0, value=0.0)
+      a_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=100.0)
+      a_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=10.0)
+      btn_crear = st.form_submit_button("Guardar Servidor")
+      if btn_crear:
+        try:
+          # Instanciamos la clase de la librería
+          nuevo_srv = srv.Servidor(nombre, t_total, t_caida, a_total, a_usado)
+          # Guardamos el resumen (diccionario) en la lista
+          st.session_state.servidores.append(nuevo_srv.resumen())
+          st.success(f"Servidor {nombre} registrado!")
+        except ValueError as e:
+          st.error(f"Error: {e}")
   # ---------------------------------------------------------
   # R - READ (Leer)
   # ---------------------------------------------------------
