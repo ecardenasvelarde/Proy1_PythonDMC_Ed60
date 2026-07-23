@@ -9,7 +9,7 @@ app_mode = st.sidebar.selectbox('_Secciones_',['Home','Ejercicio 1','Ejercicio 2
 
 if app_mode == 'Home':
   st.title ('Proyecto N°1 de la Especialización de Python Ed. 60')
-  st.image('Python_logo.png',width=200)
+  st.image('Python_logo.png',width=400)
   st.subheader("_Streamlit_ is :red[cool] :sunglasses:")
   
   st.write("Elaborado por: Erick Cárdenas")
