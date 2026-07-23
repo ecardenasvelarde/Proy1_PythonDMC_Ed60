@@ -150,13 +150,11 @@ elif app_mode == 'Ejercicio 2':
 elif app_mode == 'Ejercicio 3':
   # --- Configuración de la página ---
   st.set_page_config(page_title="Ejercicio 3 - Cálculo de Disponibilidad") 
-# 1. Inicializar el histórico en el session_state
-  
+  # --- Inicialización del estado (Session State) ---
   if 'historico_resultados' not in st.session_state:
-        st.session_state.historico_resultados = []
-    
-  st.title("Cálculo de Disponibilidad")
-  
+    st.session_state.historico_resultados = []
+  # --- Configuración de la página ---
+  st.subheader("Uso de funciones desde una librería externa")
   # 2. Selector de función (aunque solo usemos una, el ejercicio lo pide)
   opcion = st.selectbox("Seleccione la función a utilizar", 
                        ["Calcular Disponibilidad de Sistema"])
