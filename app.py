@@ -153,11 +153,10 @@ elif app_mode == 'Ejercicio 3':
   # --- Inicialización del estado (Session State) ---
   if 'historico_resultados' not in st.session_state:
     st.session_state.historico_resultados = []
-  # --- Configuración de la página ---
+  # --- Titulo ---
   st.subheader("Uso de funciones desde una librería externa")
   # 2. Selector de función (aunque solo usemos una, el ejercicio lo pide)
-  opcion = st.selectbox("Seleccione la función a utilizar", 
-                       ["Calcular Disponibilidad de Sistema"])
+  opcion = st.selectbox("Seleccione la función a utilizar", ["Calcular Disponibilidad de Sistema"])
   
   # 3. Widgets para ingresar parámetros
   st.subheader("Parámetros de entrada")
@@ -238,54 +237,52 @@ elif app_mode == 'Ejercicio 4':
   # R - READ (Leer)
   # ---------------------------------------------------------
   with tab_leer:
-      st.subheader("Listado de Servidores")
-      if st.session_state.servidores:
-          df = pd.DataFrame(st.session_state.servidores)
-          st.dataframe(df, use_container_width=True)
-      else:
-          st.info("No hay servidores registrados.")
-  
+    st.subheader("Listado de Servidores")
+    if st.session_state.servidores:
+      df = pd.DataFrame(st.session_state.servidores)
+      st.dataframe(df, use_container_width=True)
+    else:
+      st.info("No hay servidores registrados.")
   # ---------------------------------------------------------
   # U - UPDATE (Actualizar)
   # ---------------------------------------------------------
   with tab_actualizar:
-      st.subheader("Modificar Datos")
-      if st.session_state.servidores:
-          nombres_srv = [s['servidor'] for s in st.session_state.servidores]
-          elegido = st.selectbox("Selecciona servidor para editar", nombres_srv)
-          
-          # Formulario de edición
-          nuevo_t_caida = st.number_input("Nuevo Tiempo de Caída", min_value=0.0)
-          nuevo_a_usado = st.number_input("Nuevo Almacenamiento Usado", min_value=0.0)
-          
-          if st.button("Actualizar"):
-              for s in st.session_state.servidores:
-                  if s['servidor'] == elegido:
-                      # Recalculamos usando la clase de nuevo para validar
-                      try:
-                          # Buscamos datos originales para no perder el nombre y totales
-                          # (En un CRUD real guardaríamos el objeto completo)
-                          upd = srv.Servidor(elegido, 1000, nuevo_t_caida, 1000, nuevo_a_usado) 
-                          s['disponibilidad_pct'] = round(upd.calcular_disponibilidad(), 2)
-                          s['uso_almacenamiento_pct'] = round(upd.calcular_uso_almacenamiento(), 2)
-                          s['estado'] = upd.estado_servidor()
-                          st.success("Actualizado")
-                          st.rerun()
-                      except ValueError as e:
-                          st.error(e)
+    st.subheader("Modificar Datos")
+    if st.session_state.servidores:
+      nombres_srv = [s['servidor'] for s in st.session_state.servidores]
+      elegido = st.selectbox("Selecciona servidor para editar", nombres_srv)
+      
+      # Formulario de edición
+      nuevo_t_caida = st.number_input("Nuevo Tiempo de Caída", min_value=0.0)
+      nuevo_a_usado = st.number_input("Nuevo Almacenamiento Usado", min_value=0.0)
+      
+      if st.button("Actualizar"):
+        for s in st.session_state.servidores:
+          if s['servidor'] == elegido:
+            # Recalculamos usando la clase de nuevo para validar
+            try:
+              # Buscamos datos originales para no perder el nombre y totales
+              # (En un CRUD real guardaríamos el objeto completo)
+              upd = srv.Servidor(elegido, 1000, nuevo_t_caida, 1000, nuevo_a_usado) 
+              s['disponibilidad_pct'] = round(upd.calcular_disponibilidad(), 2)
+              s['uso_almacenamiento_pct'] = round(upd.calcular_uso_almacenamiento(), 2)
+              s['estado'] = upd.estado_servidor()
+              st.success("Actualizado")
+              st.rerun()
+            except ValueError as e:
+              st.error(e)
       else:
-          st.write("Nada que actualizar.")
-  
+        st.write("Nada que actualizar.")
   # ---------------------------------------------------------
   # D - DELETE (Eliminar)
   # ---------------------------------------------------------
   with tab_eliminar:
-      st.subheader("Eliminar Registros")
-      if st.session_state.servidores:
-          nombres_eliminar = [s['servidor'] for s in st.session_state.servidores]
-          a_borrar = st.selectbox("Selecciona servidor a borrar", nombres_eliminar)
-          
-          if st.button("Eliminar permanentemente", type="primary"):
-              st.session_state.servidores = [s for s in st.session_state.servidores if s['servidor'] != a_borrar]
-              st.warning(f"Servidor {a_borrar} eliminado.")
-              st.rerun()
+    st.subheader("Eliminar Registros")
+    if st.session_state.servidores:
+      nombres_eliminar = [s['servidor'] for s in st.session_state.servidores]
+      a_borrar = st.selectbox("Selecciona servidor a borrar", nombres_eliminar)
+      
+      if st.button("Eliminar permanentemente", type="primary"):
+        st.session_state.servidores = [s for s in st.session_state.servidores if s['servidor'] != a_borrar]
+        st.warning(f"Servidor {a_borrar} eliminado.")
+        st.rerun()
