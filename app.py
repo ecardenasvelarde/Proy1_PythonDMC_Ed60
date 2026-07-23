@@ -173,7 +173,7 @@ elif app_mode == 'Ejercicio 3':
       # Recordar que devuelve un diccionario: {"disponibilidad_pct": valor}
       resultado_dict = lfp.calcular_cuota_prestamo_frances(t_monto, t_tasa, t_plazo)
       # Extraer el valor del diccionario
-      valor_dispo = resultado_dict["disponibilidad_pct"]
+      valor_dispo = resultado_dict["cuota_mensual"]
       
       # 5. Mostrar resultado en pantalla
       st.success(f"La disponibilidad calculada es: {valor_dispo}%")
@@ -181,10 +181,10 @@ elif app_mode == 'Ejercicio 3':
       
       # 6. Guardar en el histórico para el DataFrame
       registro = {
-        "Función": opcion,
-        "Cuota": valor_dispo,
-        "Monto": t_tasa,
-        "Intereses": t_plazo,
+        "Monto": t_monto,
+        "Tasa": t_tasa,
+        "Plazo": t_plazo,
+        "Cuota": valor_dispo
       }
       st.session_state.historico_resultados.append(registro)
     
