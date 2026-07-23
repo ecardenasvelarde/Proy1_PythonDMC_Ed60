@@ -176,8 +176,8 @@ elif app_mode == 'Ejercicio 3':
       valor_cuota = resultado_dict["cuota_mensual"]
       
       # 5. Mostrar resultado en pantalla
-      st.success(f"La disponibilidad calculada es: {valor_cuota}%")
-      st.metric("Resultado", f"{valor_cuota}%")
+      st.success(f"La cuota calculada es: {valor_cuota}")
+      st.metric("Resultado", f"{valor_cuota}")
       
       # 6. Guardar en el histórico para el DataFrame
       registro = {
