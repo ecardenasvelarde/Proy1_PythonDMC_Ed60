@@ -27,9 +27,11 @@ if app_mode == 'Home':
     '''
     )
   
-  st.image('Python_logo.png',width=400)
+  col_izq, col_der = st.columns([2, 1])
 
-  st.write("Elaborado por: Erick Cárdenas")
+  with col_der:
+    st.image('Python_logo.png',width=400)
+    st.write("Elaborado por: Erick Cárdenas")
   
 elif app_mode == 'Ejercicio 1':
   # --- Configuración de la página ---
