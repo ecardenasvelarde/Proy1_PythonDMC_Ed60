@@ -116,7 +116,7 @@ elif app_mode == 'Ejercicio 2':
     # --- Inicialización del estado (Session State) ---
   st.subheader("Registro con NumPy, arrays y DataFrame")
   producto =  st.text_input('Producto', placeholder="Ej: Ingrese producto")
-  categoria = st.selectbox('Categoría',['Computadoras','Entrada','Salida','Almacenamiento'])
+  categoria = st.selectbox('Categoría',['Laptop','Teclado','Mouse','Disco externo'])
   precio_unitario = st.number_input('Precio Unitario', min_value=0.0, step=1.0)
   cantidad = st.number_input("Cantidad", min_value=0, step=1)
   total = cantidad*precio_unitario
