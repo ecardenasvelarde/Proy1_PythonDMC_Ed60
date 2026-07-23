@@ -155,25 +155,24 @@ elif app_mode == 'Ejercicio 3':
     st.session_state.historico_resultados = []
   # --- Titulo ---
   st.subheader("Uso de funciones desde una librería externa")
-  # 2. Selector de función (aunque solo usemos una, el ejercicio lo pide)
-  opcion = st.selectbox("Seleccione la función a utilizar", ["Calcular Disponibilidad de Sistema"])
-  
-  # 3. Widgets para ingresar parámetros
+  # Selector de función (aunque solo usemos una, el ejercicio lo pide)
+  opcion = st.selectbox("Seleccione la función a utilizar", ["Calcular Cuota Prestamo Frances"])
+  # Widgets para ingresar parámetros
   st.subheader("Parámetros de entrada")
-  col1, col2 = st.columns(2)
-  
+  col1, col2, col3 = st.columns(3)
   with col1:
-      t_total = st.number_input("Tiempo Total (horas)", min_value=0.1, value=24.0, step=1.0)
-  
+    t_total = st.number_input("Tiempo Total (horas)", min_value=0.1, value=24.0, step=1.0)
   with col2:
-      t_caida = st.number_input("Tiempo Caída (horas)", min_value=0.0, value=0.0, step=0.1)
+    t_caida = st.number_input("Tiempo Caída (horas)", min_value=0.0, value=0.0, step=0.1)
+  with col2:
+    t_caida = st.number_input("Tiempo Caída (horas)", min_value=0.0, value=0.0, step=0.1)
   
   # 4. Botón para ejecutar y mostrar resultado
   if st.button("Ejecutar Función"):
       try:
           # Ejecución de la función desde la librería externa
           # Recordar que devuelve un diccionario: {"disponibilidad_pct": valor}
-          resultado_dict = lfp.calcular_disponibilidad_sistema(t_total, t_caida)
+          resultado_dict = lfp.calcular_cuota_prestamo_frances(t_total, t_caida)
           
           # Extraer el valor del diccionario
           valor_dispo = resultado_dict["disponibilidad_pct"]
