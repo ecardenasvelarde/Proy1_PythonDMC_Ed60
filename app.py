@@ -139,15 +139,14 @@ elif app_mode == 'Ejercicio 2':
       st.session_state.registros.append(registro)
       st.success("Agregado")
     if st.session_state.registros:
-       df = pd.DataFrame(st.session_state.registros)
-       st.dataframe(df,use_container_width=True, hide_index=True)
-       
-       # Botón para reiniciar
-       if st.button("Limpiar todo"):
-           st.session_state.registros = []
-           st.rerun()
+      df = pd.DataFrame(st.session_state.registros)
+      st.dataframe(df,use_container_width=True, hide_index=True)
+      # Botón para reiniciar
+    if st.button("Limpiar todo"):
+      st.session_state.registros = []
+      st.rerun()
     else:
-        st.info("Aún no hay registros.")
+      st.info("Aún no hay registros.")
 elif app_mode == 'Ejercicio 3':
   # --- Configuración de la página ---
   st.set_page_config(page_title="Ejercicio 3 - Cálculo de Disponibilidad") 
