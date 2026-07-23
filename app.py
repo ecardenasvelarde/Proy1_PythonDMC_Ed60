@@ -8,11 +8,10 @@ st.sidebar.image('DMC.png')
 app_mode = st.sidebar.selectbox('_Secciones_',['Home','Ejercicio 1','Ejercicio 2','Ejercicio 3','Ejercicio 4'])
 
 if app_mode == 'Home':
-  st.title ('Proyecto N°1 de la Especialización de Python Ed. 60')
-  st.image('Python_logo.png',width=400)
-  st.subheader("_Streamlit_ is :red[cool] :sunglasses:")
   
-  st.write("Elaborado por: Erick Cárdenas")
+  st.title ('Proyecto N°1 de la Especialización de Python Ed. 60')
+  
+  st.subheader("_Streamlit_ is :red[cool] :sunglasses:")
   
   st.markdown(
     '''
@@ -27,6 +26,10 @@ if app_mode == 'Home':
     Descripción: Proyecto enfocado en el desarrollo de una Aplicación con Streamlit.
     '''
     )
+  
+  st.image('Python_logo.png',width=400)
+
+  st.write("Elaborado por: Erick Cárdenas")
   
 elif app_mode == 'Ejercicio 1':
   # --- Configuración de la página ---
