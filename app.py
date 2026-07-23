@@ -110,10 +110,11 @@ elif app_mode == 'Ejercicio 2':
   """)
   # --- Linea divisora ---
   st.divider()
-  
-    if "registros" not in st.session_state:
-        st.session_state.registros = []
-    st.subheader("Registro con NumPy, arrays y DataFrame")
+  # --- Inicialización del estado (Session State) ---
+  if "registros" not in st.session_state:
+    st.session_state.registros = []
+    # --- Inicialización del estado (Session State) ---
+  st.subheader("Registro con NumPy, arrays y DataFrame")
     producto =  st.text_input('Producto', placeholder="Ej: Ingrese producto")
     categoria = st.selectbox('Categoría',['Computadoras','Entrada','Salida','Almacenamiento'])
     precio_unitario = st.number_input('Precio Unitario', min_value=0.0, step=1.0)
