@@ -121,24 +121,23 @@ elif app_mode == 'Ejercicio 2':
   cantidad = st.number_input("Cantidad", min_value=0, step=1)
   total = cantidad*precio_unitario
   # Botón para agregar
-    if st.button('agregar registro'):
-        if producto.strip()=="":
-          st.error('ingresar un producto')
-        elif precio_unitario <0:
-          st.error ('el precio debe ser mayor a cero')
-        elif cantidad <0:
-          st.error ('la cantidad debe ser mayor a cero')
-        else: 
-          registro = {
-          'producto': producto,
-          'categoria' : categoria,
-          'precio unitario' : precio_unitario,
-          'cantidad' : cantidad,
-          'total': total
-        }
-        st.session_state.registros.append(registro)
-        st.success("Agregado")
-      
+  if st.button('agregar registro'):
+    if producto.strip()=="":
+      st.error('ingresar un producto')
+    elif precio_unitario <0:
+      st.error ('el precio debe ser mayor a cero')
+    elif cantidad <0:
+      st.error ('la cantidad debe ser mayor a cero')
+    else: 
+      registro = {
+        'producto': producto,
+        'categoria' : categoria,
+        'precio unitario' : precio_unitario,
+        'cantidad' : cantidad,
+        'total': total
+      }
+      st.session_state.registros.append(registro)
+      st.success("Agregado")
     if st.session_state.registros:
        df = pd.DataFrame(st.session_state.registros)
        st.dataframe(df,use_container_width=True, hide_index=True)
