@@ -4,11 +4,12 @@ import numpy as np
 import libreria_funciones_proyecto1 as lfp
 
 st.sidebar.image('DMC.png')
+
 app_mode = st.sidebar.selectbox('_Secciones_',['Home','Ejercicio 1','Ejercicio 2','Ejercicio 3','Ejercicio 4'])
 
 if app_mode == 'Home':
   st.title ('Proyecto N°1 de la Especialización de Python Ed. 60')
-  
+  st.image('Python_logo.png',width=200)
   st.subheader("_Streamlit_ is :red[cool] :sunglasses:")
   
   st.write("Elaborado por: Erick Cárdenas")
@@ -26,7 +27,7 @@ if app_mode == 'Home':
     Descripción: Proyecto enfocado en el desarrollo de una Aplicación con Streamlit.
     '''
     )
-  st.image('Python_logo.png')
+  
 elif app_mode == 'Ejercicio 1':
   # --- Configuración de la página ---
   st.set_page_config(page_title="Ejercicio 1 - Flujo de Caja", page_icon="💰")
