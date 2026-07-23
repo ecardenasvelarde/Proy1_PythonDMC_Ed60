@@ -161,37 +161,35 @@ elif app_mode == 'Ejercicio 3':
   st.subheader("Parámetros de entrada")
   col1, col2, col3 = st.columns(3)
   with col1:
-    t_total = st.number_input("Tiempo Total (horas)", min_value=0.1, value=24.0, step=1.0)
+    t_monto = st.number_input("Monto", min_value=0.1, value=24.0, step=1.0)
   with col2:
-    t_caida = st.number_input("Tiempo Caída (horas)", min_value=0.0, value=0.0, step=0.1)
+    t_tasa = st.number_input("Tasa (%)", min_value=0.0, value=0.0, step=0.1)
   with col2:
-    t_caida = st.number_input("Tiempo Caída (horas)", min_value=0.0, value=0.0, step=0.1)
-  
-  # 4. Botón para ejecutar y mostrar resultado
+    t_plazo = st.number_input("Plazo (meses)", min_value=0.0, value=0.0, step=0.1)
+  # Botón para ejecutar y mostrar resultado
   if st.button("Ejecutar Función"):
-      try:
-          # Ejecución de la función desde la librería externa
-          # Recordar que devuelve un diccionario: {"disponibilidad_pct": valor}
-          resultado_dict = lfp.calcular_cuota_prestamo_frances(t_total, t_caida)
-          
-          # Extraer el valor del diccionario
-          valor_dispo = resultado_dict["disponibilidad_pct"]
-          
-          # 5. Mostrar resultado en pantalla
-          st.success(f"La disponibilidad calculada es: {valor_dispo}%")
-          st.metric("Resultado", f"{valor_dispo}%")
-  
-          # 6. Guardar en el histórico para el DataFrame
-          registro = {
-              "Función": opcion,
-              "T. Total (h)": t_total,
-              "T. Caída (h)": t_caida,
-              "Disponibilidad (%)": valor_dispo
-          }
-          st.session_state.historico_resultados.append(registro)
-  
-      except ValueError as e:
-          st.error(f"Error en los parámetros: {e}")
+    try:
+      # Ejecución de la función desde la librería externa
+      # Recordar que devuelve un diccionario: {"disponibilidad_pct": valor}
+      resultado_dict = lfp.calcular_cuota_prestamo_frances(t_monto, t_tasa, t_plazo)
+      # Extraer el valor del diccionario
+      valor_dispo = resultado_dict["disponibilidad_pct"]
+      
+      # 5. Mostrar resultado en pantalla
+      st.success(f"La disponibilidad calculada es: {valor_dispo}%")
+      st.metric("Resultado", f"{valor_dispo}%")
+      
+      # 6. Guardar en el histórico para el DataFrame
+      registro = {
+        "Función": opcion,
+        "Cuota": valor_dispo,
+        "Monto": t_tasa,
+        "Intereses": t_plazo,
+      }
+      st.session_state.historico_resultados.append(registro)
+    
+    except ValueError as e:
+      st.error(f"Error en los parámetros: {e}")
   
   # --- Mostrar tabla histórica ---
   st.divider()
