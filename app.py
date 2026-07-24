@@ -204,6 +204,7 @@ elif app_mode == 'Ejercicio 3':
 elif app_mode == 'Ejercicio 4':
   # --- Configuración de la página ---
   st.set_page_config(page_title="Ejercicio 4 - CRUD")
+  # --- Inicialización del estado (Session State) ---
   if 'servidores' not in st.session_state:
     st.session_state.servidores = []
   # --- Título ---
