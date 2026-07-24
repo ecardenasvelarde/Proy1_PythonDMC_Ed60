@@ -161,7 +161,7 @@ elif app_mode == 'Ejercicio 3':
   st.subheader("Parámetros de entrada")
   col1, col2, col3 = st.columns(3)
   with col1:
-    t_monto = st.number_input("Monto", min_value=0.1, value=24.0, step=1.0)
+    t_monto = st.number_input("Monto", min_value=1.0, value=1,000.0, step=1000.0)
   with col2:
     t_tasa = st.number_input("Tasa (%)", min_value=0.0, value=0.0, step=0.1)
   with col3:
