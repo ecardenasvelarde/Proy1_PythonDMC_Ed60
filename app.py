@@ -159,12 +159,12 @@ elif app_mode == 'Ejercicio 3':
   opcion = st.selectbox("Seleccione la función a utilizar", ["Calcular Cuota Prestamo Frances"])
   # Widgets para ingresar parámetros
   st.subheader("Parámetros de entrada")
-  col1, col2, col3 = st.columns([1,1,1])
+  col1, col2, col3 = st.columns(1)
   with col1:
     t_monto = st.number_input("Monto", min_value=0.1, value=24.0, step=1.0)
   with col2:
     t_tasa = st.number_input("Tasa (%)", min_value=0.0, value=0.0, step=0.1)
-  with col2:
+  with col3:
     t_plazo = st.number_input("Plazo (meses)", min_value=0.0, value=0.0, step=0.1)
   # Botón para ejecutar y mostrar resultado
   if st.button("Ejecutar Función"):
