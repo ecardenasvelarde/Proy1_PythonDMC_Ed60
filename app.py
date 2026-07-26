@@ -236,8 +236,8 @@ elif app_mode == 'Ejercicio 4':
   # ---------------------------------------------------------
   with tab_leer:
     st.subheader("Listado de Proyectos de Inversion")
-    if st.session_state.ProyectoInversion:
-      df = pd.DataFrame(st.session_state.ProyectoInversion)
+    if st.session_state.proyectos:
+      df = pd.DataFrame(st.session_state.proyectos)
       st.dataframe(df, use_container_width=True)
     else:
       st.info("No hay Proyectos de Inversion registrados.")
@@ -246,8 +246,8 @@ elif app_mode == 'Ejercicio 4':
   # ---------------------------------------------------------
   with tab_actualizar:
     st.subheader("Modificar Datos")
-    if st.session_state.ProyectoInversion:
-      nombres_srv = [s['servidor'] for s in st.session_state.ProyectoInversion]
+    if st.session_state.proyectos:
+      nombres_srv = [s['proyectos'] for s in st.session_state.proyectos]
       elegido = st.selectbox("Selecciona servidor para editar", nombres_srv)
       
       # Formulario de edición
@@ -255,8 +255,8 @@ elif app_mode == 'Ejercicio 4':
       nuevo_a_usado = st.number_input("Nuevo Almacenamiento Usado", min_value=0.0)
       
       if st.button("Actualizar"):
-        for s in st.session_state.ProyectoInversion:
-          if s['servidor'] == elegido:
+        for s in st.session_state.proyectos:
+          if s['proyectos'] == elegido:
             # Recalculamos usando la clase de nuevo para validar
             try:
               # Buscamos datos originales para no perder el nombre y totales
