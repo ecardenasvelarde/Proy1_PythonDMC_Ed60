@@ -227,7 +227,7 @@ elif app_mode == 'Ejercicio 4':
           # Instanciamos la clase de la librería
           nuevo_srv = srv.ProyectoInversion(t_nombre, t_inversion, t_flujos, t_tasa)
           # Guardamos el resumen (diccionario) en la lista
-          st.session_state.proyectoinversion.append(nuevo_srv.resumen())
+          st.session_state.ProyectoInversion.append(nuevo_srv.resumen())
           st.success(f"Proyecto de Inversion {nombre} registrado!")
         except ValueError as e:
           st.error(f"Error: {e}")
@@ -236,8 +236,8 @@ elif app_mode == 'Ejercicio 4':
   # ---------------------------------------------------------
   with tab_leer:
     st.subheader("Listado de Proyectos de Inversion")
-    if st.session_state.proyectoinversion:
-      df = pd.DataFrame(st.session_state.proyectoinversion)
+    if st.session_state.ProyectoInversion:
+      df = pd.DataFrame(st.session_state.ProyectoInversion)
       st.dataframe(df, use_container_width=True)
     else:
       st.info("No hay Proyectos de Inversion registrados.")
@@ -246,8 +246,8 @@ elif app_mode == 'Ejercicio 4':
   # ---------------------------------------------------------
   with tab_actualizar:
     st.subheader("Modificar Datos")
-    if st.session_state.servidores:
-      nombres_srv = [s['servidor'] for s in st.session_state.servidores]
+    if st.session_state.ProyectoInversion:
+      nombres_srv = [s['servidor'] for s in st.session_state.ProyectoInversion]
       elegido = st.selectbox("Selecciona servidor para editar", nombres_srv)
       
       # Formulario de edición
@@ -255,7 +255,7 @@ elif app_mode == 'Ejercicio 4':
       nuevo_a_usado = st.number_input("Nuevo Almacenamiento Usado", min_value=0.0)
       
       if st.button("Actualizar"):
-        for s in st.session_state.servidores:
+        for s in st.session_state.ProyectoInversion:
           if s['servidor'] == elegido:
             # Recalculamos usando la clase de nuevo para validar
             try:
