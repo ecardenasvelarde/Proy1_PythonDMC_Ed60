@@ -276,11 +276,11 @@ elif app_mode == 'Ejercicio 4':
   # ---------------------------------------------------------
   with tab_eliminar:
     st.subheader("Eliminar Registros")
-    if st.session_state.servidores:
-      nombres_eliminar = [s['servidor'] for s in st.session_state.servidores]
+    if st.session_state.proyectos:
+      nombres_eliminar = [s['proyectos'] for s in st.session_state.proyectos]
       a_borrar = st.selectbox("Selecciona servidor a borrar", nombres_eliminar)
       
       if st.button("Eliminar permanentemente", type="primary"):
-        st.session_state.servidores = [s for s in st.session_state.servidores if s['servidor'] != a_borrar]
-        st.warning(f"Servidor {a_borrar} eliminado.")
+        st.session_state.proyectos = [s for s in st.session_state.servidores if s['proyectos'] != a_borrar]
+        st.warning(f"Proyecto de Inversion {a_borrar} eliminado.")
         st.rerun()
