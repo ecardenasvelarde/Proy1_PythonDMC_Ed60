@@ -205,8 +205,8 @@ elif app_mode == 'Ejercicio 4':
   # --- Configuración de la página ---
   st.set_page_config(page_title="Ejercicio 4 - CRUD")
   # --- Inicialización del estado (Session State) ---
-  if 'servidores' not in st.session_state:
-    st.session_state.servidores = []
+  if 'proyectos' not in st.session_state:
+    st.session_state.proyectos = []
   # --- Título ---
   st.subheader("Gestión de Proyectos de Inversion (CRUD)")
   # Usamos Tabs para organizar el CRUD
@@ -227,7 +227,7 @@ elif app_mode == 'Ejercicio 4':
           # Instanciamos la clase de la librería
           nuevo_srv = srv.ProyectoInversion(t_nombre, t_inversion, t_flujos, t_tasa)
           # Guardamos el resumen (diccionario) en la lista
-          st.session_state.ProyectoInversion.append(nuevo_srv.resumen())
+          st.session_state.proyectos.append(nuevo_srv.resumen())
           st.success(f"Proyecto de Inversion {nombre} registrado!")
         except ValueError as e:
           st.error(f"Error: {e}")
