@@ -217,31 +217,30 @@ elif app_mode == 'Ejercicio 4':
   with tab_crear:
     st.subheader("Registrar Nuevo Proyecto de Inversion")
     with st.form("form_registro"):
-      nombre = st.text_input("Nombre del Proyecto")
+      t_nombre = st.text_input("Nombre del Proyecto")
       t_inversion = st.number_input("Monto de Inversion Inicial Total ", min_value=1.0, value=1000.0)
       t_flujos = st.number_input("Flujos", min_value=1.0, value=1.0)
-      a_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=100.0)
-      a_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=10.0)
+      t_tasa = st.number_input("Tasa dscto (%)", min_value=0.0, value=1.0)
       btn_crear = st.form_submit_button("Guardar Servidor")
       if btn_crear:
         try:
           # Instanciamos la clase de la librería
-          nuevo_srv = srv.Servidor(nombre, t_total, t_caida, a_total, a_usado)
+          nuevo_srv = srv.ProyectoInversion(t_nombre, t_inversion, t_flujos, t_tasa)
           # Guardamos el resumen (diccionario) en la lista
-          st.session_state.servidores.append(nuevo_srv.resumen())
-          st.success(f"Servidor {nombre} registrado!")
+          st.session_state.proyectoinversion.append(nuevo_srv.resumen())
+          st.success(f"Proyecto de Inversion {nombre} registrado!")
         except ValueError as e:
           st.error(f"Error: {e}")
   # ---------------------------------------------------------
   # R - READ (Leer)
   # ---------------------------------------------------------
   with tab_leer:
-    st.subheader("Listado de Servidores")
-    if st.session_state.servidores:
-      df = pd.DataFrame(st.session_state.servidores)
+    st.subheader("Listado de Proyectos de Inversion")
+    if st.session_state.proyectoinversion:
+      df = pd.DataFrame(st.session_state.proyectoinversion)
       st.dataframe(df, use_container_width=True)
     else:
-      st.info("No hay servidores registrados.")
+      st.info("No hay Proyectos de Inversion registrados.")
   # ---------------------------------------------------------
   # U - UPDATE (Actualizar)
   # ---------------------------------------------------------
