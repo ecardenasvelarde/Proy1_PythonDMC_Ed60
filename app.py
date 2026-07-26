@@ -208,18 +208,18 @@ elif app_mode == 'Ejercicio 4':
   if 'servidores' not in st.session_state:
     st.session_state.servidores = []
   # --- Título ---
-  st.subheader("Gestión de Servidores (CRUD)")
+  st.subheader("Gestión de Proyectos de Inversion (CRUD)")
   # Usamos Tabs para organizar el CRUD
   tab_crear, tab_leer, tab_actualizar, tab_eliminar = st.tabs(["Crear", "Leer", "Actualizar", "Eliminar"])
   # ---------------------------------------------------------
   # C - CREATE (Crear)
   # ---------------------------------------------------------
   with tab_crear:
-    st.subheader("Registrar Nuevo Servidor")
+    st.subheader("Registrar Nuevo Proyecto de Inversion")
     with st.form("form_registro"):
-      nombre = st.text_input("Nombre del Servidor")
-      t_total = st.number_input("Tiempo Total (h)", min_value=1.0, value=24.0)
-      t_caida = st.number_input("Tiempo Caída (h)", min_value=0.0, value=0.0)
+      nombre = st.text_input("Nombre del Proyecto")
+      t_inversion = st.number_input("Monto de Inversion Inicial Total ", min_value=1.0, value=1000.0)
+      t_flujos = st.number_input("Flujos", min_value=1.0, value=1.0)
       a_total = st.number_input("Almacenamiento Total (GB)", min_value=1.0, value=100.0)
       a_usado = st.number_input("Almacenamiento Usado (GB)", min_value=0.0, value=10.0)
       btn_crear = st.form_submit_button("Guardar Servidor")
