@@ -228,7 +228,7 @@ elif app_mode == 'Ejercicio 4':
           nuevo_srv = srv.ProyectoInversion(t_nombre, t_inversion, [t_flujos], t_tasa)
           # Guardamos el resumen (diccionario) en la lista
           st.session_state.proyectos.append(nuevo_srv.resumen())
-          st.success(f"Proyecto de Inversion {nombre} registrado!")
+          st.success(f"Proyecto de Inversion {t_nombre} registrado!")
         except ValueError as e:
           st.error(f"Error: {e}")
   # ---------------------------------------------------------
