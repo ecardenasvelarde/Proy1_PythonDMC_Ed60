@@ -264,8 +264,8 @@ elif app_mode == 'Ejercicio 4':
               # (En un CRUD real guardaríamos el objeto completo)
               upd = srv.ProyectoInversion(elegido, nuevo_t_inversion, [nuevo_t_flujos,nuevo_t_flujos], nuevo_t_tasa) 
               s['vpn'] = round(upd.calcular_vpn(), 2)
-              s['roi_pct'] = round(upd.roi_pct(), 2)
-              s['payback_anios'] = round(upd.payback_anios(), 2)
+              s['roi_pct'] = round(upd.calcular_roi(), 2)
+              s['payback_anios'] = round(upd.calcular_payback_simple(), 2)
               s['decision'] = "Viable" if s['vpn'] > 0 else "No viable"
               st.success("Actualizado")
               st.rerun()
