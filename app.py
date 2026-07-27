@@ -225,7 +225,7 @@ elif app_mode == 'Ejercicio 4':
       if btn_crear:
         try:
           # Instanciamos la clase de la librería
-          nuevo_srv = srv.ProyectoInversion(t_nombre, t_inversion, [t_flujos], t_tasa)
+          nuevo_srv = srv.ProyectoInversion(t_nombre, t_inversion, [t_flujos,t_flujos], t_tasa)
           # Guardamos el resumen (diccionario) en la lista
           st.session_state.proyectos.append(nuevo_srv.resumen())
           st.success(f"Proyecto de Inversion {t_nombre} registrado!")
@@ -248,11 +248,12 @@ elif app_mode == 'Ejercicio 4':
     st.subheader("Modificar Datos")
     if st.session_state.proyectos:
       nombres_srv = [s['proyecto'] for s in st.session_state.proyectos]
-      elegido = st.selectbox("Selecciona servidor para editar", nombres_srv)
+      elegido = st.selectbox("Selecciona el proyecto para editar", nombres_srv)
       
       # Formulario de edición
-      nuevo_t_caida = st.number_input("Nuevo Tiempo de Caída", min_value=0.0)
-      nuevo_a_usado = st.number_input("Nuevo Almacenamiento Usado", min_value=0.0)
+      nuevo_t_inversion = st.number_input("Nuevo Monto de Inversion Inicial Total", min_value=1.0)
+      nuevo_t_flujos = st.number_input("Nuevo Flujos", min_value=1.0)
+      nuevo_t_tasa = st.number_input("Nueva Tasa dscto", min_value=0.0)
       
       if st.button("Actualizar"):
         for s in st.session_state.proyectos:
@@ -261,7 +262,7 @@ elif app_mode == 'Ejercicio 4':
             try:
               # Buscamos datos originales para no perder el nombre y totales
               # (En un CRUD real guardaríamos el objeto completo)
-              upd = srv.Servidor(elegido, 1000, nuevo_t_caida, 1000, nuevo_a_usado) 
+              upd = srv.ProyectoInversion(elegido, t_inversion, [t_flujos], t_tasa) 
               s['disponibilidad_pct'] = round(upd.calcular_disponibilidad(), 2)
               s['uso_almacenamiento_pct'] = round(upd.calcular_uso_almacenamiento(), 2)
               s['estado'] = upd.estado_servidor()
