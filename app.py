@@ -247,7 +247,7 @@ elif app_mode == 'Ejercicio 4':
   with tab_actualizar:
     st.subheader("Modificar Datos")
     if st.session_state.proyectos:
-      nombres_srv = [s['proyectos'] for s in st.session_state.proyectos]
+      nombres_srv = [s['proyecto'] for s in st.session_state.proyectos]
       elegido = st.selectbox("Selecciona servidor para editar", nombres_srv)
       
       # Formulario de edición
@@ -256,7 +256,7 @@ elif app_mode == 'Ejercicio 4':
       
       if st.button("Actualizar"):
         for s in st.session_state.proyectos:
-          if s['proyectos'] == elegido:
+          if s['proyecto'] == elegido:
             # Recalculamos usando la clase de nuevo para validar
             try:
               # Buscamos datos originales para no perder el nombre y totales
