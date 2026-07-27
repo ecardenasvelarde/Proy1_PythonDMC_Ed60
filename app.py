@@ -225,7 +225,7 @@ elif app_mode == 'Ejercicio 4':
       if btn_crear:
         try:
           # Instanciamos la clase de la librería
-          nuevo_srv = srv.ProyectoInversion(t_nombre, t_inversion, t_flujos, t_tasa)
+          nuevo_srv = srv.ProyectoInversion(t_nombre, t_inversion, [t_flujos], t_tasa)
           # Guardamos el resumen (diccionario) en la lista
           st.session_state.proyectos.append(nuevo_srv.resumen())
           st.success(f"Proyecto de Inversion {nombre} registrado!")
