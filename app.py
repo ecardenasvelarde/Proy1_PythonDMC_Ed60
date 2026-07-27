@@ -262,10 +262,11 @@ elif app_mode == 'Ejercicio 4':
             try:
               # Buscamos datos originales para no perder el nombre y totales
               # (En un CRUD real guardaríamos el objeto completo)
-              upd = srv.ProyectoInversion(elegido, t_inversion, [t_flujos], t_tasa) 
-              s['disponibilidad_pct'] = round(upd.calcular_disponibilidad(), 2)
-              s['uso_almacenamiento_pct'] = round(upd.calcular_uso_almacenamiento(), 2)
-              s['estado'] = upd.estado_servidor()
+              upd = srv.ProyectoInversion(elegido, nuevo_t_inversion, [nuevo_t_flujos,nuevo_t_flujos], nuevo_t_tasa) 
+              s['vpn'] = round(upd.calcular_vpn(), 2)
+              s['roi_pct'] = round(upd.roi_pct(), 2)
+              s['payback_anios'] = round(upd.payback_anios(), 2)
+              s['decision'] = "Viable" if s['vpn'] > 0 else "No viable"
               st.success("Actualizado")
               st.rerun()
             except ValueError as e:
